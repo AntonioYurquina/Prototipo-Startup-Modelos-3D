@@ -1,250 +1,134 @@
 # Prototipo Startup Modelos 3D
 
-MVP web para validar la viabilidad de un marketplace de modelos 3D bajo enfoque Lean Startup. La prioridad del proyecto no es construir una plataforma final ni una infraestructura compleja, sino medir si existe demanda real por compra de modelos y si el flujo operativo de venta puede sostenerse con una operación liviana.
+Marketplace MVP para validar demanda de modelos 3D con enfoque Lean Startup.
 
-## Idea del producto
+## Sobre este proyecto
 
-La propuesta consiste en ofrecer modelos 3D listos para descargar en formatos como `.obj`, `.stl` y `.fbx`, orientados a clientes que necesitan assets visuales o imprimibles sin pasar por procesos de producción largos.
+Este proyecto es una Single Page Application construida para evaluar si existe traccion real para vender modelos 3D digitales y si el flujo operativo de oferta, compra y entrega puede ejecutarse con una arquitectura liviana.
 
-El producto parte de dos preguntas de negocio:
+Objetivo principal:
 
-1. ¿Existe intención real de compra por modelos 3D curados y listos para usar?
-2. ¿Es viable operar la venta y entrega con un flujo simple, semimanual y medible?
+1. Validar demanda (usuarios que visualizan, hacen clic y completan compra simulada).
+2. Validar oferta (carga operativa de nuevos modelos y entrega por links temporales).
 
-La respuesta a esas preguntas se valida con una SPA que concentra dos frentes:
+## Problema y oportunidad
 
-1. Vista Cliente para capturar atención, vistas y clics de compra.
-2. Vista Administración para cargar modelos, generar links temporales y revisar métricas.
+Muchos potenciales compradores de assets 3D necesitan encontrar y obtener modelos listos para usar sin depender de procesos largos o tiendas con friccion alta.
 
-## Enfoque Lean Startup
+Este MVP busca responder:
 
-Este MVP está diseñado para validar, no para escalar. Por eso se toman decisiones deliberadas:
+1. Si una experiencia simple de catalogo + checkout puede capturar intencion de compra.
+2. Si un panel operativo minimo permite gestionar productos y entregas en etapa temprana.
 
-1. Checkout simulado en lugar de pasarela real.
-2. Links de descarga temporales simulados en lugar de backend de archivos.
-3. Estado local en frontend en lugar de base de datos o autenticación.
-4. Dashboard operativo mínimo para validar la oferta y la operación manual.
+## Solucion implementada
 
-La lógica es simple: si el usuario explora modelos, hace clic en comprar y completa el checkout simulado, hay una señal concreta de interés. Si además el administrador puede cargar productos y generar entregas temporales sin fricción, hay una señal operativa para continuar iterando.
+La app esta dividida en dos vistas:
 
-## Problema que resuelve
+1. Vista Cliente:
+Hero de venta, catalogo en cards y checkout simulado.
+2. Dashboard Robledo:
+Gestion de modelos, generador de links temporales y panel de metricas.
 
-Desde la perspectiva del cliente:
+## Funcionalidades clave
 
-1. Descubrir modelos 3D de calidad de forma rápida.
-2. Evaluar formato y precio sin navegar una plataforma compleja.
-3. Simular una compra en un flujo familiar, parecido a un checkout de marketplace.
+1. Catalogo de modelos 3D con imagen, nombre, formato y precio.
+2. Checkout simulado estilo marketplace para validar intencion de compra.
+3. Alta de modelos con campos de negocio: `NombrePublicado`, `Formato`, `ZipName`, `Path` e imagenes.
+4. Generacion de links temporales simulados para entrega.
+5. Metricas en tiempo real dentro del dashboard:
+Cantidad de clics en comprar, modelos mas vistos y conversion simulada.
+6. Tabla de flujo de ventas con estado de intento o completada.
 
-Desde la perspectiva operativa:
+## Modelo de datos (frontend state)
 
-1. Cargar nuevos modelos sin depender de desarrollo backend.
-2. Asociar el activo con su `ZipName`, formato y rutas simuladas.
-3. Generar enlaces temporales según el flujo de venta de modelo.
-4. Medir la respuesta del mercado antes de invertir en infraestructura completa.
+Entidades representadas en el estado de la app:
 
-## Hipótesis de validación
+1. Modelo:
+`id`, `nombrePublicado`, `formato`, `zipName`, `filePath`, `price`, `images`.
+2. Imagen:
+`id`, `modelId`, `url`.
+3. Cliente:
+`id`, `nombre`, `email`, `telegram`.
+4. Venta:
+`id`, `modelId`, `clientId`, `fechaHoraCompra`, `status`, `checkoutProvider`.
 
-Este prototipo intenta validar las siguientes hipótesis:
+Relaciones clave:
 
-1. Un catálogo visual simple es suficiente para generar interés inicial.
-2. Un botón `Comprar` con checkout simulado puede medir intención de compra más allá de visitas pasivas.
-3. Los usuarios valoran claridad en nombre del modelo, formato y precio.
-4. El flujo operativo de venta y entrega puede iniciar con una solución semimanual usando links temporales.
-5. El administrador necesita un panel más orientado a operación y métricas que a estética avanzada.
+1. Un modelo puede tener multiples imagenes.
+2. Una venta referencia a un modelo y opcionalmente a un cliente.
+3. El checkout convierte una venta iniciada en venta completada.
 
-## Alcance funcional del MVP
-
-### Vista Cliente
-
-Incluye:
-
-1. Hero section con propuesta de valor.
-2. Catálogo en grilla de cards.
-3. Card con imagen, nombre, formato y CTA de compra.
-4. Simulación de checkout estilo marketplace.
-
-Objetivo:
-
-1. Medir visualizaciones de modelos.
-2. Medir clics en compra.
-3. Medir cierres simulados del checkout.
-
-### Dashboard Robledo
-
-Incluye:
-
-1. Gestión de modelos.
-2. Formulario para alta de producto.
-3. Generador interno de links temporales.
-4. Panel de métricas de validación.
-5. Tabla del flujo de venta de modelo.
-
-Objetivo:
-
-1. Validar la capacidad de cargar oferta.
-2. Validar la lógica operativa de entrega.
-3. Concentrar métricas para tomar decisiones rápidas.
-
-## Modelo conceptual de datos
-
-Aunque el proyecto no usa backend todavía, el estado de la aplicación respeta la relación lógica entre las entidades del DER trabajado:
-
-### Modelo
-
-Campos principales:
-
-1. `id`
-2. `nombrePublicado`
-3. `formato`
-4. `zipName`
-5. `filePath`
-6. `price`
-7. `images`
-
-### Imagen
-
-Campos principales:
-
-1. `id`
-2. `modelId`
-3. `url`
-
-### Cliente
-
-Campos principales:
-
-1. `id`
-2. `nombre`
-3. `email`
-4. `telegram`
-
-### Venta
-
-Campos principales:
-
-1. `id`
-2. `modelId`
-3. `clientId`
-4. `fechaHoraCompra`
-5. `status`
-6. `checkoutProvider`
-
-## Flujo de negocio modelado en la app
-
-1. El cliente entra al catálogo.
-2. Visualiza un modelo o inicia una compra.
-3. Se registra una venta iniciada.
-4. El cliente completa datos en el checkout simulado.
-5. La venta pasa a estado `completed`.
-6. El cliente queda asociado a la venta.
-7. El administrador puede generar un link temporal para la entrega.
-
-Este flujo representa el concepto de integración posterior con medios de pago y canales operativos como marketplace, mensajería o entrega por archivo temporal.
-
-## Métricas de validación
-
-Las métricas actuales buscan responder si hay interés real y si el flujo convierte:
-
-1. Cantidad de clics en `Comprar`.
-2. Modelos más vistos.
-3. Tasa de conversión simulada.
-4. Historial visible de ventas iniciadas y completadas.
-
-Interpretación esperada:
-
-1. Muchas vistas y pocos clics indican problema de propuesta, precio o formato.
-2. Muchos clics y pocos checkouts completos indican fricción en el flujo o baja confianza.
-3. Alta concentración en pocos modelos ayuda a detectar categorías con mejor demanda.
-
-## Stack técnico
+## Stack tecnico
 
 1. React
 2. Vite
 3. Tailwind CSS
 4. Lucide React
 
-La aplicación está construida como SPA con un estado local que permite iterar rápido sobre producto, UX y medición sin introducir complejidad de backend antes de tiempo.
+## Enfoque de producto
 
-## Estructura de navegación
+Este desarrollo prioriza aprendizaje rapido sobre complejidad tecnica:
 
-La interfaz se divide en dos modos:
+1. Checkout simulado en vez de pasarela real.
+2. Links temporales simulados en vez de backend de storage.
+3. Estado local en vez de infraestructura de datos.
 
-1. `Vista Cliente`
-2. `Dashboard Robledo`
+Esto reduce costo de experimentacion y acelera iteraciones de negocio.
 
-Esto permite representar claramente los dos roles del flujo:
+## Arquitectura de validacion
 
-1. Cliente que compra o expresa intención de compra.
-2. Operador que carga modelos, gestiona entregas y revisa métricas.
+Flujo resumido:
 
-## Estado actual del proyecto
+1. Usuario explora catalogo.
+2. Usuario inicia compra (`sale initiated`).
+3. Usuario completa checkout simulado (`sale completed`).
+4. Operador genera link temporal para entrega.
+5. Dashboard agrega senales para decision de siguiente iteracion.
 
-Actualmente el MVP implementa:
+## Resultado esperado del MVP
 
-1. Catálogo visual de modelos 3D.
-2. Checkout simulado.
-3. Alta de modelos desde dashboard.
-4. Generador de links temporales.
-5. Métricas de vistas, clics y conversión.
-6. Despliegue preparado para GitHub Pages con GitHub Actions.
+Este proyecto no busca ser la version final del marketplace. Busca generar evidencia para responder si conviene invertir en una version escalable.
 
-Limitaciones actuales:
+Se consideran senales positivas:
 
-1. No hay persistencia de datos.
-2. No hay autenticación.
-3. No hay pasarela de pago real.
-4. No hay almacenamiento real de archivos.
-5. Los links temporales son simulados.
+1. Alta tasa de clic en comprar por sesion.
+2. Conversion consistente de intentos a compras simuladas.
+3. Modelos con patrones claros de interes.
+4. Flujo operativo simple y sostenible para carga y entrega.
 
-## Próximos pasos sugeridos
+## Roadmap
 
-1. Persistir modelos, clientes y ventas en una base ligera o backend serverless.
-2. Integrar analítica real como PostHog, Mixpanel o GA4.
-3. Reemplazar checkout simulado por una validación de pago controlada.
-4. Integrar almacenamiento real para assets y expiración real de links.
-5. Incorporar segmentación por categorías, estilos o industrias.
+1. Persistencia real (backend y base de datos).
+2. Integracion de analitica (PostHog, Mixpanel o GA4).
+3. Integracion de pago real.
+4. Entrega real de archivos con expiracion segura.
+5. Gestion por categorias, etiquetas y recomendaciones.
+
+## Demo y repositorio
+
+1. Repositorio:
+https://github.com/AntonioYurquina/Prototipo-Startup-Modelos-3D
+2. URL esperada de Pages:
+https://antonioyurquina.github.io/Prototipo-Startup-Modelos-3D/
+
+Nota:
+Para publicar correctamente en GitHub Pages, el repositorio debe tener `GitHub Actions` seleccionado como source en `Settings > Pages`.
 
 ## Desarrollo local
 
-Instalación:
-
 ```bash
 npm install
-```
-
-Modo desarrollo:
-
-```bash
 npm run dev
 ```
 
-Build de producción:
+Build:
 
 ```bash
 npm run build
 ```
 
-## Deploy
+## Autor
 
-El repositorio quedó preparado para deploy en GitHub Pages mediante GitHub Actions.
+Antonio Yurquina
 
-Archivos relevantes:
-
-1. [vite.config.js](vite.config.js)
-2. [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml)
-
-Nota importante:
-
-Para que GitHub Pages publique el build correcto, en la configuración del repositorio debe estar seleccionado `GitHub Actions` como source en `Settings > Pages`.
-
-## Resumen ejecutivo
-
-Este proyecto no intenta demostrar una plataforma final de comercio de modelos 3D. Intenta demostrar algo más importante en esta etapa: si vale la pena construirla.
-
-El MVP concentra lo esencial:
-
-1. Captar demanda.
-2. Organizar oferta.
-3. Simular venta.
-4. Medir señales.
-5. Aprender rápido con bajo costo técnico.
+Proyecto de validacion de negocio y producto digital para marketplace de modelos 3D.
