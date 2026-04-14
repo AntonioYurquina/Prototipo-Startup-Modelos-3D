@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd \"/home/tony/Escritorio/Desarrollo/Proyecto Robledo - Pyme Modelos 3D\" && mkdir -p github-repos && cd github-repos && git clone https://github\\.com/AntonioYurquina/Prototipo-Startup-Modelos-3D\\.git$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

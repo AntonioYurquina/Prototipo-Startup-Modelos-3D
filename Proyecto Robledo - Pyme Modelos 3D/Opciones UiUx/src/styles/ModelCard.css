@@ -1,0 +1,163 @@
+.model-card {
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  margin-bottom: 16px;
+}
+
+.model-card.dark {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-color: #374151;
+  color: #f3f4f6;
+}
+
+.model-card.light {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.model-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border-color: #3b82f6;
+}
+
+.model-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.model-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.model-description {
+  margin: 8px 0 16px 0;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.model-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.model-details.dark {
+  background: rgba(31, 41, 55, 0.5);
+}
+
+.model-details.light {
+  background: rgba(249, 250, 251, 0.8);
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-label {
+  font-weight: 500;
+  opacity: 0.7;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.detail-value {
+  font-weight: 700;
+  font-size: 14px;
+  color: #3b82f6;
+}
+
+.model-link {
+  margin: 12px 0;
+}
+
+.model-link a {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #3b82f6;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.model-link a:hover {
+  background: #2563eb;
+  transform: translateX(4px);
+}
+
+.model-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-view,
+.btn-delete {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.btn-view {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-view:hover {
+  background: #2563eb;
+}
+
+.btn-delete {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .model-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .model-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .model-actions {
+    flex-direction: column;
+  }
+}
