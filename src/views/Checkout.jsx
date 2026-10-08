@@ -130,7 +130,7 @@ export default function Checkout({ model, onConfirm, onCancel }) {
           <p className="mt-4 flex gap-2 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950">
             <Info size={16} aria-hidden="true" className="mt-0.5 shrink-0" />
             <span>
-              Es una simulación estilo Mercado Libre: no se realiza ningún cobro y los datos quedan solo en tu navegador.
+              Es una simulación de pago: no se realiza ningún cobro y los datos quedan solo en tu navegador.
             </span>
           </p>
 

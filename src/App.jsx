@@ -109,7 +109,7 @@ function App() {
       clientId: null,
       fechaHoraCompra: new Date().toISOString(),
       status: 'initiated',
-      checkoutProvider: 'Mercado Libre (simulado)',
+      checkoutProvider: 'Pasarela de pago (simulada)',
     }
 
     trackModelView(model.id)
