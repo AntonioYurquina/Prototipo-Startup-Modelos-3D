@@ -273,15 +273,15 @@ function App() {
             </button>
             <button
               type="button"
-              onClick={() => setActiveView('robledo')}
+              onClick={() => setActiveView('panel')}
               className={`flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-medium transition ${
-                activeView === 'robledo'
+                activeView === 'panel'
                   ? 'bg-slate-900 text-white shadow-lg shadow-slate-900/20'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
               <LayoutDashboard size={18} />
-              Dashboard Robledo
+              Panel operativo
             </button>
           </nav>
 
@@ -459,7 +459,7 @@ function App() {
           ) : (
             <section className="space-y-6">
               <header>
-                <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Dashboard Robledo</h2>
+                <h2 className="text-3xl font-semibold tracking-tight text-slate-900">Panel operativo</h2>
                 <p className="mt-1 text-sm text-slate-500">
                   Gestion interna de modelos, links temporales y metricas de validacion.
                 </p>

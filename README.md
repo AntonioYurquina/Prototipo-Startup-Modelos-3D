@@ -26,7 +26,7 @@ La app esta dividida en dos vistas:
 
 1. Vista Cliente:
 Hero de venta, catalogo en cards y checkout simulado.
-2. Dashboard Robledo:
+2. Panel operativo:
 Gestion de modelos, generador de links temporales y panel de metricas.
 
 ## Funcionalidades clave
