@@ -273,15 +273,29 @@ function App() {
       <footer className="border-t border-slate-200 bg-white/70">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-5 pb-28 text-sm text-slate-600 md:px-8 md:pb-5">
           <p>Prototipo de validación (MVP) con datos simulados. No se realizan cobros reales.</p>
-          <a
-            href={REPO_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded font-semibold text-slate-800 underline decoration-slate-400 underline-offset-4 hover:decoration-slate-800"
-          >
-            Código en GitHub <ExternalLink size={14} aria-hidden="true" />
-            <span className="sr-only">(se abre en una pestaña nueva)</span>
-          </a>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <p>
+              Desarrollado por{' '}
+              <a
+                href="https://arkode.com.ar"
+                target="_blank"
+                rel="noopener"
+                className="rounded font-semibold text-slate-800 underline decoration-slate-400 underline-offset-4 hover:decoration-slate-800"
+              >
+                Arkode
+                <span className="sr-only"> (se abre en una pestaña nueva)</span>
+              </a>
+            </p>
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded font-semibold text-slate-800 underline decoration-slate-400 underline-offset-4 hover:decoration-slate-800"
+            >
+              Código en GitHub <ExternalLink size={14} aria-hidden="true" />
+              <span className="sr-only">(se abre en una pestaña nueva)</span>
+            </a>
+          </div>
         </div>
       </footer>
 
